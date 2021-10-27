@@ -36,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String user=username.getText().toString();
-                String pass=password.getText().toString();
-                String repass=repassword.getText().toString();
+                    String user=username.getText().toString();
+                    String pass=password.getText().toString();
+                    String repass=repassword.getText().toString();
                 if(user.equals("")||pass.equals("")||repass.equals("")){
                     Toast.makeText(MainActivity.this, "Fill all of the fields", Toast.LENGTH_SHORT).show();
                 }
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                     if(pass.equals(repass)){
                         Boolean checkuser=DB.checkUsername(user);
                         if(checkuser==false){
-                            Boolean insert = DB.insertData(user,pass);
+                            Boolean insert = DB.insertUserData(user,pass);
                             if(insert==true){
                                 Toast.makeText(MainActivity.this,"User registered successfully", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);

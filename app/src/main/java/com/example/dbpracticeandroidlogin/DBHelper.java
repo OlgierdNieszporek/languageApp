@@ -16,16 +16,20 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase MyDB) {
-        MyDB.execSQL("create Table users(username TEXT primary key,password TEXT)");
+        MyDB.execSQL("create Table users(  userId INTEGER primary key AUTOINCREMENT,username TEXT ,password TEXT)");
+        MyDB.execSQL("create Table collections(collectionId INTEGER primary key AUTOINCREMENT, collectionName TEXT, userIdInCollection INTEGER REFERENCES userId)");
+        MyDB.execSQL("create Table words(wordId INTEGER primary key AUTOINCREMENT, word TEXT, translation, collectionIdInWords INTEGER REFERENCES collectionId)");
+
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase MyDB, int oldVersion, int newVersion) {
         MyDB.execSQL("drop Table if exists users");
+        MyDB.execSQL("drop Table if exists collections");
     }
 
-    public Boolean insertData(String username, String password){
+    public Boolean insertUserData(String username, String password){
         SQLiteDatabase MyDB =this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("username",username);
@@ -38,6 +42,7 @@ public class DBHelper extends SQLiteOpenHelper {
             return true;
         }
     }
+
     public boolean checkUsername(String username){
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Cursor cursor = MyDB.rawQuery("Select * from users where username = ?",new String[] {username} );
@@ -48,6 +53,7 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+
     public boolean checkUsernamePassword(String username,String password){
         SQLiteDatabase MyDB=this.getWritableDatabase();
         Cursor cursor = MyDB.rawQuery("Select * from users where username= ? and password = ?",new String[] {username,password});
@@ -59,4 +65,19 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
     }
+
+    public Boolean insertCollectionName(String collectionName){
+        SQLiteDatabase MyDB =this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("collectionName",collectionName);
+        long result = MyDB.insert("collections", null , contentValues);
+        if(result==-1){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+
 }

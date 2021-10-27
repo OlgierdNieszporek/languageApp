@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DbPracticeAndroidLogin">
-        <activity android:name=".CreateCollectionActivity"></activity>
+        <activity android:name=".CreateCollectionNameActivity"></activity>
+        <activity android:name=".CreateCollectionActivity" />
         <activity android:name=".CollectionsActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".LoginActivity">

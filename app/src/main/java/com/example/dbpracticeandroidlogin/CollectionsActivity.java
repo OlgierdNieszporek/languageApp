@@ -8,17 +8,17 @@ import android.view.View;
 import android.widget.Button;
 
 public class CollectionsActivity extends AppCompatActivity {
-    Button createColectionBtn;
+    Button createCollectionBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collections);
 
-        createColectionBtn = (Button) findViewById(R.id.createColectionBtn);
-        createColectionBtn.setOnClickListener(new View.OnClickListener() {
+        createCollectionBtn = (Button) findViewById(R.id.createColectionBtn);
+        createCollectionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(),CreateCollectionActivity.class);
+                Intent intent=new Intent(getApplicationContext(),CreateCollectionNameActivity.class);
                 startActivity(intent);
             }
         });
